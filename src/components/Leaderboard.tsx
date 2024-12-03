@@ -5,6 +5,7 @@ import getCurrentAdventDay from '../util/date';
 import { ADVENT_DAYS, ADVENT_YEAR, LUCKY_DRAW_STARS } from '../util/constants';
 import { Nullable } from '../types/utility';
 import { DayStreak, LuckyDrawTicket } from './Badge';
+import { TAB } from '../util/space';
 
 enum SortOrder {
   Local = 'local_score',
@@ -72,20 +73,27 @@ function Leaderboard() {
 
   return (
     <>
-      <LeaderboardDateHeader />
+      <LeaderboardDateHeader
+        padLeft={rankedMembers.length.toString().length + 7}
+      />
       {rankedMembers.map((member, index) => (
-        <LeaderboardRow key={index} member={member} />
+        <LeaderboardRow
+          key={index}
+          member={member}
+          maxRank={rankedMembers.length}
+        />
       ))}
     </>
   );
 }
 
-function LeaderboardDateHeader() {
+function LeaderboardDateHeader({ padLeft }: { padLeft: number }) {
   const currentDay = getCurrentAdventDay();
 
   // I'm sorry will clean this up later
   return (
     <div className="privboard-row">
+      {' '.repeat(padLeft)}
       <span className="privboard-days">
         {Array.from({ length: ADVENT_DAYS }, (_, i) => i + 1).map(
           (day, index) => {
@@ -113,7 +121,16 @@ function LeaderboardDateHeader() {
   );
 }
 
-function LeaderboardRow({ member }: { member: RankedMember }) {
+function LeaderboardRow({ member, maxRank }: { member: RankedMember; maxRank: number }) {
+  const getFormattedRank = (rank: Nullable<number>, maxRank: number) => {
+    const maxLength = maxRank.toString().length + 1;
+    if (!rank) {
+      return ' '.repeat(maxLength);
+    } else {
+      return `${rank})`.padStart(maxLength, ' ');
+    }
+  };
+
   const getStarStyle = (day: number) => {
     if (day > getCurrentAdventDay()) {
       return 'privboard-star-locked';
@@ -133,13 +150,9 @@ function LeaderboardRow({ member }: { member: RankedMember }) {
   return (
     <div className="privboard-row">
       <span className="privboard-position">
-        {member.rank
-          ? member.rank < 10
-            ? ` ${member.rank}) `
-            : `${member.rank}) `
-          : '    '}
+        {getFormattedRank(member.rank, maxRank) + TAB}
       </span>
-      <span className="star-count">{member.stars}* </span>
+      <span className="star-count">{member.stars}*{TAB}</span>
       {Array.from({ length: ADVENT_DAYS }, (_, i) => i + 1).map(
         (day, index) => {
           return (
