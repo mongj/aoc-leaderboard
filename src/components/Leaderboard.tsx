@@ -8,8 +8,8 @@ import { DayStreak, LuckyDrawTicket } from './Badge';
 import { TAB } from '../util/space';
 import { getLeaderboardJSON } from '../api/leaderboard';
 
-const EVENT = 2024;
-const LEADERBOARD_IDS = [3247510, 1477899];
+// const EVENT = 2024;
+// const LEADERBOARD_IDS = [3247510, 1477899];
 const LEADERBOARD_FILENAMES = ['leaderboard1', 'leaderboard2'];
 
 enum SortOrder {
