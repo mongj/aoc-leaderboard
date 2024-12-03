@@ -6,6 +6,11 @@ import { ADVENT_DAYS, ADVENT_YEAR, LUCKY_DRAW_STARS } from '../util/constants';
 import { Nullable } from '../types/utility';
 import { DayStreak, LuckyDrawTicket } from './Badge';
 import { TAB } from '../util/space';
+import { getLeaderboardJSON } from '../api/leaderboard';
+
+const EVENT = 2024;
+const LEADERBOARD_IDS = [3247510, 1477899];
+const LEADERBOARD_FILENAMES = ['leaderboard1', 'leaderboard2'];
 
 enum SortOrder {
   Local = 'local_score',
@@ -28,11 +33,18 @@ function Leaderboard() {
     DEFAULT_SORT_ORDER) as SortOrder;
 
   useEffect(() => {
-    fetch('/data.json')
-      .then((res) => res.json())
-      .then((data) => {
-        setLeaderboard(data);
-      });
+    Promise.all(LEADERBOARD_FILENAMES.map((f) => getLeaderboardJSON(f))).then(
+      ([data1, data2]) => {
+        const mergedData = {
+          ...data1,
+          members: {
+            ...data1.members,
+            ...data2.members,
+          },
+        };
+        setLeaderboard(mergedData);
+      },
+    );
   }, []);
 
   useEffect(() => {
@@ -121,7 +133,13 @@ function LeaderboardDateHeader({ padLeft }: { padLeft: number }) {
   );
 }
 
-function LeaderboardRow({ member, maxRank }: { member: RankedMember; maxRank: number }) {
+function LeaderboardRow({
+  member,
+  maxRank,
+}: {
+  member: RankedMember;
+  maxRank: number;
+}) {
   const getFormattedRank = (rank: Nullable<number>, maxRank: number) => {
     const maxLength = maxRank.toString().length + 1;
     if (!rank) {
@@ -152,7 +170,9 @@ function LeaderboardRow({ member, maxRank }: { member: RankedMember; maxRank: nu
       <span className="privboard-position">
         {getFormattedRank(member.rank, maxRank) + TAB}
       </span>
-      <span className="star-count">{member.stars}*{TAB}</span>
+      <span className="star-count">
+        {member.stars}*{TAB}
+      </span>
       {Array.from({ length: ADVENT_DAYS }, (_, i) => i + 1).map(
         (day, index) => {
           return (
