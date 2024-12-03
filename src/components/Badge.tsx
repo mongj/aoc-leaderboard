@@ -1,9 +1,7 @@
-interface AwardProps {
-    titleText: string;
-    content: string;
-}
+import { BadgeProps, DayStreakProps } from "../types/badge";
+import isSolvedWithinDay from "../util/solvedWithinDay";
 
-const Award = ({ titleText, content }: AwardProps) => {
+const Award = ({ titleText, content }: BadgeProps) => {
     return (
         <span className="share">[{titleText}<span className="share-content">{content}</span>]</span>
     );
@@ -11,29 +9,8 @@ const Award = ({ titleText, content }: AwardProps) => {
 
 const LuckyDrawTicket = () => {
     return (
-        <Award titleText="🎫" content="- 20 Stars Achieved - Lucky Draw Ticket Obtained! 🎉" />
+        <span className="share">[<svg style={{marginBottom: "-3.8"}} width="18px" height="18px" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="m29 14a1 1 0 0 0 1-1v-5a2 2 0 0 0 -2-2h-24a2 2 0 0 0 -2 2v5a1 1 0 0 0 1 1 2 2 0 0 1 0 4 1 1 0 0 0 -1 1v5a2 2 0 0 0 2 2h24a2 2 0 0 0 2-2v-5a1 1 0 0 0 -1-1 2 2 0 0 1 0-4zm-1 5.87v4.13h-7v-3h-2v3h-15v-4.13a4 4 0 0 0 0-7.74v-4.13h15v3h2v-3h7v4.13a4 4 0 0 0 0 7.74z"/><path fill="currentColor" d="m19 13h2v6h-2z"/><path d="m0 0h32v32h-32z" fill="none"/></svg><span className="share-content">- 20 Stars Achieved - 🎫 Lucky Draw Ticket Obtained!</span>]</span>
     )
-}
-
-interface DayStreakProps {
-    year: number;
-    latestDay: number;
-    completionDayLevel: {
-        [day: string]: {
-            [level: string]: {
-                star_index: number;
-                get_star_ts: number;
-            };
-        };
-    };
-}
-
-function isSolvedWithinDay(aocYear: number, aocDay: number, secondStarTimestamp: number) {
-    // Releases are at 5am UTC or midnight EST or 1pm SGT
-    // No AOC before 2015
-
-    // Check if the second star was obtained before 5am UTC the next day
-    return secondStarTimestamp < Date.UTC(aocYear, 11, aocDay + 1, 5, 0, 0, 0);
 }
 
 const DayStreak = ({ year, latestDay, completionDayLevel }: DayStreakProps) => {
@@ -70,9 +47,9 @@ const DayStreak = ({ year, latestDay, completionDayLevel }: DayStreakProps) => {
         currentStreak++;
     }
 
-    return (
-        <Award titleText="🔥" content={`${currentStreak} Day Streak!`}  />
-    )
+    return currentStreak > 0 ? (
+        <Award titleText={`🔥${currentStreak}`} content="Day Streak!"  />
+    ) : (null);
 }
 
 export { Award, LuckyDrawTicket, DayStreak };
