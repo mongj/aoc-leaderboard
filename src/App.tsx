@@ -1,5 +1,6 @@
-import Header from './components/Header';
+import Header from "./components/Header";
 import Leaderboard from './components/Leaderboard';
+
 
 function App() {
   return (

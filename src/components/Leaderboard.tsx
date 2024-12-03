@@ -2,8 +2,9 @@ import { useEffect, useState } from 'react';
 import { LeaderboardData, Member } from '../types/leaderboard';
 import { useSearchParams } from 'react-router-dom';
 import getCurrentAdventDay from '../util/date';
-import { ADVENT_DAYS } from '../util/constants';
+import { ADVENT_DAYS, ADVENT_YEAR, LUCKY_DRAW_STARS } from '../util/constants';
 import { Nullable } from '../types/utility';
+import { DayStreak, LuckyDrawTicket } from './Badge';
 import { TAB } from '../util/space';
 
 enum SortOrder {
@@ -161,7 +162,7 @@ function LeaderboardRow({ member, maxRank }: { member: RankedMember; maxRank: nu
           );
         },
       )}
-      <span className="privboard-name">{getName(member.name)}</span>
+      <span className="privboard-name">{getName(member.name)}</span> {member.stars >= LUCKY_DRAW_STARS ? <LuckyDrawTicket /> : (null)} <DayStreak year={ADVENT_YEAR} latestDay={getCurrentAdventDay()} completionDayLevel={member.completion_day_level} />
     </div>
   );
 }
