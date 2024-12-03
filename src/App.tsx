@@ -1,4 +1,39 @@
+import { DayStreak, LuckyDrawTicket } from "./components/Award"
 import Header from "./components/Header"
+
+const completionDayLevel = {
+  "1": {
+    "2": {
+      "star_index": 8759,
+      "get_star_ts": 1733030397
+    },
+    "1": {
+      "star_index": 7901,
+      "get_star_ts": 1733030253
+    }
+  },
+  "3": {
+    "2": {
+      "get_star_ts": 1733202604,
+      "star_index": 526593
+    },
+    "1": {
+      "get_star_ts": 1733202204,
+      "star_index": 521704
+    }
+  },
+  "2": {
+    "2": {
+      "star_index": 225626,
+      "get_star_ts": 1733116602
+    },
+    "1": {
+      "star_index": 222735,
+      "get_star_ts": 1733116339
+    }
+  }
+};
+
 
 function App() {
   return (
@@ -22,7 +57,7 @@ function App() {
               <span>5</span>
           </span>
         </div>
-        <div className="privboard-row"><span className="privboard-position">{`1)`}</span> 21 <span className="privboard-star-both">*</span><span className="privboard-star-both">*</span><span className="privboard-star-both">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span>  <span className="privboard-name">Ming Jun</span></div>
+        <div className="privboard-row"><span className="privboard-position">{`1)`}</span> 21 <span className="privboard-star-both">*</span><span className="privboard-star-both">*</span><span className="privboard-star-both">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span>  <span className="privboard-name">Ming Jun</span> <LuckyDrawTicket/> <DayStreak year={2024}latestDay={3} completionDayLevel={completionDayLevel}/></div>
         <div className="privboard-row"><span className="privboard-position">{`2)`}</span> 17 <span className="privboard-star-both">*</span><span className="privboard-star-both">*</span><span className="privboard-star-both">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span>  <span className="privboard-name">Jun Yu</span></div>
         <div className="privboard-row"><span className="privboard-position">{`3)`}</span> 13 <span className="privboard-star-both">*</span><span className="privboard-star-both">*</span><span className="privboard-star-both">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span>  <span className="privboard-name">Lucas</span></div>
         <div className="privboard-row"><span className="privboard-position">{`4)`}</span>  7 <span className="privboard-star-both">*</span><span className="privboard-star-both">*</span><span className="privboard-star-unlocked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span><span className="privboard-star-locked">*</span>  <span className="privboard-name"><a href="https://github.com/riccoljy" target="_blank">riccoljy</a></span></div>

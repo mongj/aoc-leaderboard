@@ -492,3 +492,24 @@ form#settings input[type="checkbox"] ~ span {
 .sponsor {
   margin: 1em 0;
 }
+
+.share {
+  color: #009900;
+  cursor: default;
+  transition: color .2s 1s;
+  position: relative;
+}
+
+.share:hover, .share:focus-within {
+  color: #aaffaa;
+  transition: color .2s 0s;
+}
+
+.share .share-content {
+  display: inline-block;
+  vertical-align: text-bottom;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 0;
+  transition: max-width .2s 1s;
+}
