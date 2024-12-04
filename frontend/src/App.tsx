@@ -30,7 +30,7 @@ function App() {
           <p>
             You may use a different{' '}
             <a onClick={handleShowOrdering}>[Ordering]</a> method to view the
-            leaderboard. You can also see the cool new{' '}
+            leaderboard. You can also check out the cool new{' '}
             <a onClick={handleShowBadges}>[Badges]</a> we added!
           </p>
           {showOrdering && (
