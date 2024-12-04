@@ -1,0 +1,117 @@
+{
+  "members": {
+    "4331771": {
+      "name": "Lucas",
+      "stars": 6,
+      "id": 4331771,
+      "global_score": 0,
+      "completion_day_level": {
+        "1": {
+          "2": {
+            "star_index": 25221,
+            "get_star_ts": 1733037212
+          },
+          "1": {
+            "get_star_ts": 1733036737,
+            "star_index": 24290
+          }
+        },
+        "3": {
+          "1": {
+            "get_star_ts": 1733218704,
+            "star_index": 610214
+          },
+          "2": {
+            "get_star_ts": 1733218851,
+            "star_index": 610868
+          }
+        },
+        "2": {
+          "2": {
+            "get_star_ts": 1733117420,
+            "star_index": 232679
+          },
+          "1": {
+            "get_star_ts": 1733116937,
+            "star_index": 228842
+          }
+        }
+      },
+      "last_star_ts": 1733218851,
+      "local_score": 25
+    },
+    "1477899": {
+      "name": "Jun Yu",
+      "completion_day_level": {
+        "1": {
+          "2": {
+            "star_index": 1470,
+            "get_star_ts": 1733029610
+          },
+          "1": {
+            "get_star_ts": 1733029518,
+            "star_index": 0
+          }
+        },
+        "4": {
+          "1": {
+            "get_star_ts": 1733290778,
+            "star_index": 825302
+          },
+          "2": {
+            "star_index": 827402,
+            "get_star_ts": 1733291142
+          }
+        },
+        "2": {
+          "2": {
+            "star_index": 262801,
+            "get_star_ts": 1733124425
+          },
+          "1": {
+            "star_index": 261218,
+            "get_star_ts": 1733124031
+          }
+        },
+        "3": {
+          "2": {
+            "star_index": 526424,
+            "get_star_ts": 1733202592
+          },
+          "1": {
+            "star_index": 523763,
+            "get_star_ts": 1733202387
+          }
+        }
+      },
+      "global_score": 0,
+      "local_score": 39,
+      "last_star_ts": 1733291142,
+      "stars": 8,
+      "id": 1477899
+    },
+    "4325829": {
+      "local_score": 4,
+      "last_star_ts": 1733278754,
+      "global_score": 0,
+      "completion_day_level": {
+        "1": {
+          "2": {
+            "star_index": 799393,
+            "get_star_ts": 1733278754
+          },
+          "1": {
+            "get_star_ts": 1733277577,
+            "star_index": 797952
+          }
+        }
+      },
+      "id": 4325829,
+      "stars": 2,
+      "name": "Lin Xinyi"
+    }
+  },
+  "owner_id": 1477899,
+  "day1_ts": 1733029200,
+  "event": "2024"
+}

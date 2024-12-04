@@ -1,0 +1,98 @@
+{
+  "members": {
+    "4615442": {
+      "name": "blanklogic",
+      "local_score": 0,
+      "last_star_ts": 0,
+      "global_score": 0,
+      "completion_day_level": {
+
+      },
+      "id": 4615442,
+      "stars": 0
+    },
+    "4348178": {
+      "completion_day_level": {
+        "1": {
+          "2": {
+            "star_index": 49951,
+            "get_star_ts": 1733046840
+          },
+          "1": {
+            "star_index": 49698,
+            "get_star_ts": 1733046762
+          }
+        },
+        "2": {
+          "2": {
+            "get_star_ts": 1733120078,
+            "star_index": 246002
+          },
+          "1": {
+            "get_star_ts": 1733116856,
+            "star_index": 228106
+          }
+        }
+      },
+      "global_score": 0,
+      "local_score": 15,
+      "last_star_ts": 1733120078,
+      "stars": 4,
+      "id": 4348178,
+      "name": "riccoljy"
+    },
+    "4325748": {
+      "name": "Ming Jun",
+      "id": 4325748,
+      "stars": 8,
+      "last_star_ts": 1733289451,
+      "local_score": 45,
+      "global_score": 0,
+      "completion_day_level": {
+        "3": {
+          "2": {
+            "star_index": 526593,
+            "get_star_ts": 1733202604
+          },
+          "1": {
+            "star_index": 521704,
+            "get_star_ts": 1733202204
+          }
+        },
+        "2": {
+          "1": {
+            "star_index": 222735,
+            "get_star_ts": 1733116339
+          },
+          "2": {
+            "star_index": 225626,
+            "get_star_ts": 1733116602
+          }
+        },
+        "4": {
+          "2": {
+            "get_star_ts": 1733289451,
+            "star_index": 816259
+          },
+          "1": {
+            "star_index": 812811,
+            "get_star_ts": 1733288955
+          }
+        },
+        "1": {
+          "1": {
+            "get_star_ts": 1733030253,
+            "star_index": 7901
+          },
+          "2": {
+            "star_index": 8759,
+            "get_star_ts": 1733030397
+          }
+        }
+      }
+    }
+  },
+  "owner_id": 1477899,
+  "day1_ts": 1733029200,
+  "event": "2024"
+}
