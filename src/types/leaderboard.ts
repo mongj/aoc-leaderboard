@@ -5,10 +5,11 @@ export interface CompletionLevel {
   get_star_ts: number;
 }
 
-export interface DayCompletion {
-  '1'?: CompletionLevel;
-  '2'?: CompletionLevel;
-}
+export type DayCompletion = {
+  [part in DayPart]: CompletionLevel;
+};
+
+export type DayPart = '1' | '2';
 
 export interface CompletionDayLevel {
   [day: string]: DayCompletion;
