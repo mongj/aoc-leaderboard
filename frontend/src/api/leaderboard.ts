@@ -1,14 +1,9 @@
 import { LeaderboardData } from '../types/leaderboard';
-import { api, aocApi } from './index';
+import api from './common';
 
-const getLeaderboard = async (
-  year: number,
-  leaderboardId: number,
-): Promise<LeaderboardData> => {
+const getLeaderboard = async (): Promise<LeaderboardData> => {
   try {
-    const { data } = await aocApi.get<LeaderboardData>(
-      `/${year}/leaderboard/private/view/${leaderboardId}.json`,
-    );
+    const { data } = await api.get<LeaderboardData>(`/leaderboards/merged`);
     return data;
   } catch (error) {
     throw new Error(
@@ -17,17 +12,4 @@ const getLeaderboard = async (
   }
 };
 
-const getLeaderboardJSON = async (
-  filename: string,
-): Promise<LeaderboardData> => {
-  try {
-    const { data } = await api.get<LeaderboardData>(`/${filename}.json`);
-    return data;
-  } catch (error) {
-    throw new Error(
-      `Failed to fetch reviews: ${error instanceof Error ? error.message : 'Unknown error'}`,
-    );
-  }
-};
-
-export { getLeaderboard, getLeaderboardJSON };
+export { getLeaderboard };

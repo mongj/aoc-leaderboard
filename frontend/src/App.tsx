@@ -2,6 +2,7 @@ import Header from './components/Header';
 import Leaderboard from './components/Leaderboard';
 import { useState } from 'react';
 
+
 function App() {
   const [showOrdering, setShowOrdering] = useState(false);
   const [showBadges, setShowBadges] = useState(false);

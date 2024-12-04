@@ -17,14 +17,6 @@ func (a *Leaderboard) Create(db *gorm.DB) error {
 	return db.Create(&a).Error
 }
 
-func ListLeaderboards(db *gorm.DB) ([]Leaderboard, error) {
-	var a []Leaderboard
-	if err := db.Find(&a).Error; err != nil {
-		return nil, err
-	}
-	return a, nil
-}
-
 // ReadLeaderboard returns a leaderboard from the database given by the ID
 func ReadLeaderboard(db *gorm.DB, id int) (*Leaderboard, error) {
 	var a Leaderboard
@@ -34,10 +26,16 @@ func ReadLeaderboard(db *gorm.DB, id int) (*Leaderboard, error) {
 	return &a, nil
 }
 
+// ReadAllLeaderboards returns a list of all leaderboards from the database
 func ReadAllLeaderboards(db *gorm.DB) ([]Leaderboard, error) {
 	var a []Leaderboard
 	if err := db.Find(&a).Error; err != nil {
 		return nil, err
 	}
 	return a, nil
+}
+
+// UpdateLeaderboard updates a leaderboard in the database
+func UpdateLeaderboard(db *gorm.DB, id int, data []byte) error {
+	return db.Model(&Leaderboard{}).Where("aoc_leaderboard_id = ?", id).Update("data", data).Error
 }
