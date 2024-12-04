@@ -1,0 +1,22 @@
+-- +migrate Up
+CREATE TABLE leaderboards (
+  id SERIAL PRIMARY KEY,
+  aoc_leaderboard_id INT NOT NULL,
+  data JSONB NOT NULL,
+  size INT NOT NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  deleted_at TIMESTAMP
+);
+
+CREATE TABLE configs (
+  id SERIAL PRIMARY KEY,
+  session_cookie TEXT NOT NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  deleted_at TIMESTAMP
+);
+
+-- +migrate Down
+DROP TABLE leaderboards;
+DROP TABLE configs;
