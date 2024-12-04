@@ -7,6 +7,7 @@ import { Nullable } from '../types/utility';
 import { DayStreak, LuckyDrawTicket } from './Badge';
 import { TAB } from '../util/space';
 import { getLeaderboardJSON } from '../api/leaderboard';
+import { sortByLocalScore } from '../util/sorting';
 
 // const EVENT = 2024;
 // const LEADERBOARD_IDS = [3247510, 1477899];
@@ -29,8 +30,12 @@ function Leaderboard() {
   const [leaderboard, setLeaderboard] = useState<LeaderboardData>();
   const [sortedMembers, setSortedMembers] = useState<Member[]>([]);
 
-  const sortOrder = (searchParams.get('order') ??
+  let sortOrder = (searchParams.get('order') ??
     DEFAULT_SORT_ORDER) as SortOrder;
+
+  if (!Object.values(SortOrder).includes(sortOrder as SortOrder)) {
+    sortOrder = DEFAULT_SORT_ORDER;
+  }
 
   useEffect(() => {
     Promise.all(LEADERBOARD_FILENAMES.map((f) => getLeaderboardJSON(f))).then(
@@ -53,8 +58,9 @@ function Leaderboard() {
     switch (sortOrder) {
       case SortOrder.Local:
         setSortedMembers(
-          Object.values(leaderboard.members).sort(
-            (a, b) => b.local_score - a.local_score,
+          sortByLocalScore(
+            Object.values(leaderboard.members),
+            getCurrentAdventDay(),
           ),
         );
         break;
@@ -70,6 +76,10 @@ function Leaderboard() {
           Object.values(leaderboard.members).sort((a, b) => b.stars - a.stars),
         );
         break;
+      default:
+        setSortedMembers(
+          Object.values(leaderboard.members).sort((a, b) => b.stars - a.stars),
+        );
     }
   }, [leaderboard, sortOrder]);
 
@@ -86,15 +96,30 @@ function Leaderboard() {
   return (
     <>
       <LeaderboardDateHeader
-        padLeft={rankedMembers.length.toString().length + 7}
+        padLeft={
+          sortOrder == SortOrder.Stars
+            ? rankedMembers.length.toString().length + 7
+            : rankedMembers.length.toString().length +
+              rankedMembers[0]?.local_score?.toString().length +
+              3
+        }
       />
-      {rankedMembers.map((member, index) => (
-        <LeaderboardRow
-          key={index}
-          member={member}
-          maxRank={rankedMembers.length}
-        />
-      ))}
+      {rankedMembers.map((member, index) =>
+        sortOrder == SortOrder.Stars ? (
+          <LeaderboardRowStars
+            key={index}
+            member={member}
+            maxRank={rankedMembers.length}
+          />
+        ) : (
+          <LeaderboardRowScore
+            key={index}
+            member={member}
+            maxRank={rankedMembers.length}
+            maxScore={rankedMembers[0].local_score}
+          />
+        ),
+      )}
     </>
   );
 }
@@ -133,12 +158,14 @@ function LeaderboardDateHeader({ padLeft }: { padLeft: number }) {
   );
 }
 
-function LeaderboardRow({
+function LeaderboardRowTemplate({
   member,
   maxRank,
+  children,
 }: {
   member: RankedMember;
   maxRank: number;
+  children: React.ReactNode;
 }) {
   const getFormattedRank = (rank: Nullable<number>, maxRank: number) => {
     const maxLength = maxRank.toString().length + 1;
@@ -168,11 +195,9 @@ function LeaderboardRow({
   return (
     <div className="privboard-row">
       <span className="privboard-position">
-        {getFormattedRank(member.rank, maxRank) + TAB}
+        {getFormattedRank(member.rank, maxRank)}
       </span>
-      <span className="star-count">
-        {member.stars}*{TAB}
-      </span>
+      {children}
       {Array.from({ length: ADVENT_DAYS }, (_, i) => i + 1).map(
         (day, index) => {
           return (
@@ -182,8 +207,51 @@ function LeaderboardRow({
           );
         },
       )}
-      <span className="privboard-name">{getName(member.name)}</span> {member.stars >= LUCKY_DRAW_STARS ? <LuckyDrawTicket /> : (null)} <DayStreak year={ADVENT_YEAR} latestDay={getCurrentAdventDay()} completionDayLevel={member.completion_day_level} />
+      <span className="privboard-name">{getName(member.name)}</span>{' '}
+      {member.stars >= LUCKY_DRAW_STARS ? <LuckyDrawTicket /> : null}{' '}
+      <DayStreak
+        year={ADVENT_YEAR}
+        latestDay={getCurrentAdventDay()}
+        completionDayLevel={member.completion_day_level}
+      />
     </div>
+  );
+}
+
+function LeaderboardRowStars({
+  member,
+  maxRank,
+}: {
+  member: RankedMember;
+  maxRank: number;
+}) {
+  return (
+    <LeaderboardRowTemplate member={member} maxRank={maxRank}>
+      <span className="star-count">
+        {TAB}{member.stars}*{TAB}
+      </span>
+    </LeaderboardRowTemplate>
+  );
+}
+
+function LeaderboardRowScore({
+  member,
+  maxRank,
+  maxScore,
+}: {
+  member: RankedMember;
+  maxRank: number;
+  maxScore: number;
+}) {
+  const getFormattedScore = (score: number, maxScore: number) => {
+    const maxLength = maxScore.toString().length;
+    return score.toString().padEnd(maxLength, ' ');
+  };
+
+  return (
+    <LeaderboardRowTemplate member={member} maxRank={maxRank}>
+      {" " + getFormattedScore(member.local_score, maxScore) + " "}
+    </LeaderboardRowTemplate>
   );
 }
 
