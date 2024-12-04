@@ -130,7 +130,11 @@ function LeaderboardDateHeader({ padLeft }: { padLeft: number }) {
                 </>
               );
             return day <= currentDay ? (
-              <a key={index} href={`https://adventofcode.com/2024/day/${day}`} target="_blank">
+              <a
+                key={index}
+                href={`https://adventofcode.com/2024/day/${day}`}
+                target="_blank"
+              >
                 {dateDisplay}
               </a>
             ) : (
