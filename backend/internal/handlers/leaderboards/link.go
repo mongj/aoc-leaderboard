@@ -64,7 +64,7 @@ func HandleLink(w http.ResponseWriter, r *http.Request) ([]byte, error) {
 		return nil, errors.Wrap(err, "failed to marshal leaderboard")
 	}
 
-	// Create the applicant
+	// Create the leaderboard
 	a := models.Leaderboard{
 		AocLeaderboardId: p.AocLeaderboardId,
 		Data:             datatypes.JSON(data),
