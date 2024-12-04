@@ -58,6 +58,7 @@ const DayStreak = ({ year, latestDay, completionDayLevel }: DayStreakProps) => {
   }
 
   // Ignore latest day since the streak is not broken yet until the next day
+
   let currentStreak = completedRecord
     .slice(0, latestDay - 1)
     .reduce((maxStreak, currentStreak) => {
