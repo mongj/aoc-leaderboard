@@ -11,6 +11,8 @@ services:
       - POSTGRES_USER=${DB_USERNAME}
       - POSTGRES_PASSWORD=${DB_PASSWORD}
     restart: always
+    networks:
+      - container-network
     
   pgadmin:
       container_name: pgadmin
@@ -23,6 +25,48 @@ services:
         PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL}
         PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD}
       restart: always
+      networks:
+        - container-network
+
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: builder
+    container_name: server
+    depends_on:
+      - database
+    ports:
+      - "${SERVER_PORT}:${SERVER_PORT}"
+    environment:
+      - SERVER_PORT=${SERVER_PORT}
+      - DB_HOSTNAME=database
+      - DB_PORT=${DB_PORT}
+      - DB_NAME=${DB_NAME}
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_SSLMODE=${DB_SSLMODE}
+    networks:
+      - container-network
+
+  proxy:
+    image: nginx:1.25
+    container_name: proxy
+    volumes:
+      - type: bind
+        source: ./nginx.conf
+        target: /etc/nginx/conf.d/default.conf
+        read_only: true
+    ports:
+      - 80:80
+    depends_on:
+      - server
+    networks:
+      - container-network
 
 volumes:
   db-data:
+
+networks:
+  container-network:
+    driver: bridge
