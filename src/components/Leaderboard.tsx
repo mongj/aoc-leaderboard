@@ -92,7 +92,7 @@ function Leaderboard() {
       rank: i === 0 || sortedMembers[i - 1].stars !== 0 ? i + 1 : null,
     });
   }
-  console.log(JSON.stringify(rankedMembers[0]));
+
   return (
     <>
       <LeaderboardDateHeader
