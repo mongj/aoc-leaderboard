@@ -69,8 +69,8 @@ function App() {
                 </li>
                 <li>
                   A Day Streak 🔥 counter - which records your current streak of
-                  solving both parts within 24 hours! You need to get at least 2 consecutive
-                  days for the streak counter to appear!
+                  solving both parts within 24 hours! You need to get at least 2
+                  consecutive days for the streak counter to appear!
                 </li>
               </ul>
             </p>
