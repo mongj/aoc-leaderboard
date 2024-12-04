@@ -58,7 +58,8 @@ const DayStreak = ({ year, latestDay, completionDayLevel }: DayStreakProps) => {
   }
 
   // Ignore latest day since the streak is not broken yet until the next day
-  var currentStreak = completedRecord
+
+  let currentStreak = completedRecord
     .slice(0, latestDay - 1)
     .reduce((maxStreak, currentStreak) => {
       if (currentStreak === 1) {
@@ -74,7 +75,7 @@ const DayStreak = ({ year, latestDay, completionDayLevel }: DayStreakProps) => {
     currentStreak++;
   }
 
-  return currentStreak > 0 ? (
+  return currentStreak > 1 ? (
     <Award titleText={`🔥${currentStreak}`} content="Day Streak!" />
   ) : null;
 };
