@@ -6,12 +6,8 @@ import { ADVENT_DAYS, ADVENT_YEAR, LUCKY_DRAW_STARS } from '../util/constants';
 import { Nullable } from '../types/utility';
 import { DayStreak, LuckyDrawTicket } from './Badge';
 import { TAB } from '../util/space';
-import { getLeaderboardJSON } from '../api/leaderboard';
+import { getLeaderboard } from '../api/leaderboard';
 import { sortByLocalScore } from '../util/sorting';
-
-// const EVENT = 2024;
-// const LEADERBOARD_IDS = [3247510, 1477899];
-const LEADERBOARD_FILENAMES = ['leaderboard1', 'leaderboard2'];
 
 enum SortOrder {
   Local = 'local_score',
@@ -38,18 +34,7 @@ function Leaderboard() {
   }
 
   useEffect(() => {
-    Promise.all(LEADERBOARD_FILENAMES.map((f) => getLeaderboardJSON(f))).then(
-      ([data1, data2]) => {
-        const mergedData = {
-          ...data1,
-          members: {
-            ...data1.members,
-            ...data2.members,
-          },
-        };
-        setLeaderboard(mergedData);
-      },
-    );
+    getLeaderboard().then(setLeaderboard);
   }, []);
 
   useEffect(() => {
@@ -228,7 +213,8 @@ function LeaderboardRowStars({
   return (
     <LeaderboardRowTemplate member={member} maxRank={maxRank}>
       <span className="star-count">
-        {TAB}{member.stars}*{TAB}
+        {TAB}
+        {member.stars}*{TAB}
       </span>
     </LeaderboardRowTemplate>
   );
@@ -250,7 +236,7 @@ function LeaderboardRowScore({
 
   return (
     <LeaderboardRowTemplate member={member} maxRank={maxRank}>
-      {" " + getFormattedScore(member.local_score, maxScore) + " "}
+      {' ' + getFormattedScore(member.local_score, maxScore) + ' '}
     </LeaderboardRowTemplate>
   );
 }

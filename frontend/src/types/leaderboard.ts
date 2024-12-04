@@ -30,7 +30,6 @@ export interface Members {
 }
 
 export interface LeaderboardData {
-  owner_id: number;
   members: Members;
   event: string;
 }

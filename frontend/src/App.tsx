@@ -1,6 +1,5 @@
-import Header from "./components/Header";
+import Header from './components/Header';
 import Leaderboard from './components/Leaderboard';
-
 
 function App() {
   return (
@@ -12,9 +11,12 @@ function App() {
             This is the private leaderboard of NUS Hackers for{' '}
             <em>Advent of Code 2024</em>.
           </p>
-          <p>You may use a different ordering method to view the leaderboard. The following ordering methods are available:</p>
+          <p>
+            You may use a different ordering method to view the leaderboard. The
+            following ordering methods are available:
+          </p>
           <ul>
-          <li>
+            <li>
               <a href="?order=stars">[Stars]</a>, which uses the number of stars
               the user has. Ties are broken by the time the most recent star was
               acquired. This is the default for this leaderboard.
@@ -24,7 +26,7 @@ function App() {
               on this leaderboard points much like the global leaderboard. If
               you add or remove users, the points will be recalculated, and the
               order can change. For <code>N</code> users, the first user to get
-              each star gets <code>N</code> points, the second gets{" "}
+              each star gets <code>N</code> points, the second gets{' '}
               <code>N-1</code>, and the last gets <code>1</code>.
             </li>
             {/* Temporarily hide global sorter as it is not formatted and not important */}
