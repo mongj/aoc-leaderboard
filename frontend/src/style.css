@@ -37,6 +37,7 @@ a {
 a:hover,
 a:focus {
   color: #99ff99;
+  cursor:pointer;
 }
 h1,
 h2 {
