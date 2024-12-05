@@ -67,7 +67,7 @@ func HandleLink(w http.ResponseWriter, r *http.Request) ([]byte, error) {
 	// Create the leaderboard
 	a := models.Leaderboard{
 		AocLeaderboardId: p.AocLeaderboardId,
-		InviteCode:      p.InviteCode,
+		InviteCode:       p.InviteCode,
 		Data:             datatypes.JSON(data),
 		Size:             len(aocLeaderboard.Members),
 	}

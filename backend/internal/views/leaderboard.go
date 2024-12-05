@@ -1,6 +1,8 @@
 package views
 
-import "github.com/mongj/aoc-leaderboard/internal/models"
+import (
+	"github.com/mongj/aoc-leaderboard/internal/models"
+)
 
 type LeaderboardViews struct {
 	Event   string                    `json:"event"`

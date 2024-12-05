@@ -9,9 +9,9 @@ type Leaderboard struct {
 	gorm.Model
 
 	AocLeaderboardId int    `gorm:"primaryKey;not null"`
-	InviteCode      string `gorm:"not null"`
-	Data            datatypes.JSON
-	Size            int
+	InviteCode       string `gorm:"not null"`
+	Data             datatypes.JSON
+	Size             int
 }
 
 func (a *Leaderboard) Create(db *gorm.DB) error {
