@@ -33,3 +33,8 @@ export interface LeaderboardData {
   members: Members;
   event: string;
 }
+export interface LeaderboardListView {
+  id: number;
+  invite_code: string;
+  size: number;
+}

@@ -1,6 +1,7 @@
 import Header from './components/Header';
 import Leaderboard from './components/Leaderboard';
 import { useState } from 'react';
+import LeaderboardList from './components/LeaderboardList';
 
 function App() {
   const [showOrdering, setShowOrdering] = useState(false);
@@ -27,6 +28,7 @@ function App() {
             2 private leaderboards used by NUS Hackers, and will be updated once
             every 900 seconds. 
             </p>
+            <LeaderboardList />
             <p>You can join our{' '}
             <a href="https://discord.gg/Ub4W6bNRch" target="_blank">
               Discord

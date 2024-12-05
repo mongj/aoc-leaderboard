@@ -20,6 +20,7 @@ func Setup(db *gorm.DB) chi.Router {
 func setupRoutes(r chi.Router) {
 	r.Get("/", api.HTTPHandler(handlers.HandlePing))
 	r.Route("/leaderboards", func(r chi.Router) {
+		r.Get("/", api.HTTPHandler(leaderboards.HandleList))
 		r.Get("/merged", api.HTTPHandler(leaderboards.HandleReadMerged))
 		r.Post("/children", api.HTTPHandler(leaderboards.HandleLink))
 	})

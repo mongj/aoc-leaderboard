@@ -49,16 +49,6 @@ code {
   display: inline-block;
   margin: 0;
   padding: 0;
-}
-code:before {
-  z-index: -1;
-  content: '';
-  position: absolute;
-  display: block;
-  left: -2px;
-  right: -2px;
-  top: 3px;
-  bottom: 0px;
   border: 1px solid #333340;
   background: #10101a;
 }

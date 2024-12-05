@@ -7,9 +7,8 @@ type LeaderboardViews struct {
 	Members map[int]*models.AOCMember `json:"members"`
 }
 
-func LeaderboardFrom(lb models.AOCLeaderboard) LeaderboardViews {
-	return LeaderboardViews{
-		Event:   lb.Event,
-		Members: lb.Members,
-	}
+type LeaderboardListViews struct {
+	Id         int    `json:"id"`
+	InviteCode string `json:"invite_code"`
+	Size       int    `json:"size"`
 }

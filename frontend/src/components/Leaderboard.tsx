@@ -23,6 +23,7 @@ interface RankedMember extends Member {
 
 function Leaderboard() {
   const [searchParams] = useSearchParams();
+
   const [leaderboard, setLeaderboard] = useState<LeaderboardData>();
   const [sortedMembers, setSortedMembers] = useState<Member[]>([]);
 
