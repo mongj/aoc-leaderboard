@@ -1,8 +1,8 @@
 package models
 
 type AOCLeaderboard struct {
-	OwnerID int                   `json:"owner_id"`
-	Event   string                `json:"event"`
+	OwnerID int                `json:"owner_id"`
+	Event   string             `json:"event"`
 	Members map[int]*AOCMember `json:"members"`
 }
 

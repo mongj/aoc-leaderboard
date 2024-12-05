@@ -32,7 +32,7 @@ func HandleReadMerged(w http.ResponseWriter, r *http.Request) ([]byte, error) {
 
 	var mergedLeaderboard views.LeaderboardViews
 	mergedLeaderboard.Members = make(map[int]*models.AOCMember)
-	
+
 	for _, lb := range leaderboards {
 		// Unmarshall json data from leaderboard
 		var lbData models.AOCLeaderboard

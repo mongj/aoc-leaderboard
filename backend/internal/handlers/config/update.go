@@ -14,7 +14,7 @@ import (
 const updateHandlerName = "config::update"
 
 // HandleUpdate updates the leaderboard config
-// NOTE: for now, this assumes that we only have one master leaderboard, 
+// NOTE: for now, this assumes that we only have one master leaderboard,
 // i.e., there is only one row in the configs table
 func HandleUpdate(w http.ResponseWriter, r *http.Request) ([]byte, error) {
 	db, err := middleware.GetDB(r)
