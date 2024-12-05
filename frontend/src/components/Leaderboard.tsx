@@ -5,7 +5,6 @@ import getCurrentAdventDay from '../util/date';
 import { ADVENT_DAYS, ADVENT_YEAR, LUCKY_DRAW_STARS } from '../util/constants';
 import { Nullable } from '../types/utility';
 import { DayStreak, LuckyDrawTicket } from './Badge';
-import { TAB } from '../util/space';
 import { getLeaderboard } from '../api/leaderboard';
 import { sortByLocalScore, sortByStars } from '../util/sorting';
 
