@@ -3,7 +3,7 @@ function Header() {
     <header>
       <div>
         <h1 className="title-global">
-          <a href="/">Advent of Code x NUS Hackers</a>
+          <a href="/">Advent of Code (NUS Hackers Leaderboard)</a>
         </h1>
         <nav>
           <ul>
