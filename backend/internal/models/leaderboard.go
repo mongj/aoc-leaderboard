@@ -37,6 +37,11 @@ func ReadAllLeaderboards(db *gorm.DB) ([]Leaderboard, error) {
 }
 
 // UpdateLeaderboard updates a leaderboard in the database
-func UpdateLeaderboard(db *gorm.DB, id int, data []byte) error {
-	return db.Model(&Leaderboard{}).Where("aoc_leaderboard_id = ?", id).Update("data", data).Error
+func UpdateLeaderboard(db *gorm.DB, id int, data []byte, size int) error {
+	return db.
+		Model(&Leaderboard{}).
+		Where("aoc_leaderboard_id = ?", id).
+		Update("data", data).
+		Update("size", size).
+		Error
 }

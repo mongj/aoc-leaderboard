@@ -44,8 +44,10 @@ func UpdateLeaderboard(db *gorm.DB) {
 			log.Fatalln(errors.Wrap(err, "failed to marshal leaderboard"))
 		}
 
+		size := len(aocLeaderboard.Members)
+
 		// Update leaderboard in database
-		err = models.UpdateLeaderboard(db, lb.AocLeaderboardId, data)
+		err = models.UpdateLeaderboard(db, lb.AocLeaderboardId, data, size)
 		if err != nil {
 			log.Fatalln(errors.Wrap(err, "failed to update leaderboard"))
 		}
