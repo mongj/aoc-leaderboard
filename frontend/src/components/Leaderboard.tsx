@@ -7,6 +7,7 @@ import { Nullable } from '../types/utility';
 import { DayStreak, LuckyDrawTicket } from './Badge';
 import { getLeaderboard } from '../api/leaderboard';
 import { sortByLocalScore, sortByStars } from '../util/sorting';
+import { TAB } from '../util/space';
 
 enum SortOrder {
   Local = 'local_score',
@@ -219,8 +220,8 @@ function LeaderboardRowStars({
   return (
     <LeaderboardRowTemplate member={member} maxRank={maxRank}>
       <span className="star-count">
-        {" "}
-        {`${member.stars}*`.padEnd(5, ' ')}
+        {`${member.stars}*`.padStart(4, ' ')}
+        {TAB}
       </span>
     </LeaderboardRowTemplate>
   );
