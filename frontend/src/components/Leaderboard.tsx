@@ -220,8 +220,8 @@ function LeaderboardRowStars({
   return (
     <LeaderboardRowTemplate member={member} maxRank={maxRank}>
       <span className="star-count">
-        {TAB}
-        {member.stars}*{TAB}
+        {" "}
+        {`${member.stars}*`.padEnd(4, ' ')}
       </span>
     </LeaderboardRowTemplate>
   );
