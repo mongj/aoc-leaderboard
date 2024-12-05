@@ -7,6 +7,21 @@ function getCurrentAdventDay() {
   return day;
 }
 
+// Get the client's timezone with fallback
+function getClientTimeZone(): string {
+  try {
+    if (Intl && Intl.DateTimeFormat) {
+      console.log(Intl.DateTimeFormat().resolvedOptions().timeZone);
+      return Intl.DateTimeFormat().resolvedOptions().timeZone;
+    }
+  } catch (e) {
+    console.error(e);
+  }
+
+  // Fallback to UTC
+  return 'UTC';
+}
+
 function formatDate(date: string) {
   return new Date(date).toLocaleDateString('en-US', {
     year: 'numeric',
@@ -14,7 +29,7 @@ function formatDate(date: string) {
     day: 'numeric',
     hour: '2-digit',
     minute: '2-digit',
-    timeZone: 'UTC',
+    timeZone: getClientTimeZone(),
   });
 }
 
