@@ -11,7 +11,6 @@ function getCurrentAdventDay() {
 function getClientTimeZone(): string {
   try {
     if (Intl && Intl.DateTimeFormat) {
-      console.log(Intl.DateTimeFormat().resolvedOptions().timeZone);
       return Intl.DateTimeFormat().resolvedOptions().timeZone;
     }
   } catch (e) {
