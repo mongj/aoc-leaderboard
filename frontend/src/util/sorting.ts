@@ -48,7 +48,6 @@ function sortByLocalScore(members: Member[], day: number): Member[] {
   return Object.values(members).sort((a, b) => b.local_score - a.local_score);
 }
 
-
 function sortByStars(members: Member[], day: number): Member[] {
   const dayCompletion: DayCompletion = {
     '1': { star_index: 1, get_star_ts: 0 },
@@ -57,10 +56,8 @@ function sortByStars(members: Member[], day: number): Member[] {
 
   // Compare timestamp of the most recent star released to tiebreak for stars
   function compareStars(a: Member, b: Member) {
-
     // Loop through from the most recent day to the first day
     for (let d = day; d >= 1; d--) {
-
       // Loop through from the second star to the first star
       for (const key of Object.keys(dayCompletion).reverse() as DayPart[]) {
         const aStarTS = a.completion_day_level[String(d)]?.[key]?.get_star_ts;

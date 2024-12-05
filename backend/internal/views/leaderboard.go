@@ -1,12 +1,15 @@
 package views
 
 import (
+	"time"
+
 	"github.com/mongj/aoc-leaderboard/internal/models"
 )
 
 type LeaderboardViews struct {
-	Event   string                    `json:"event"`
-	Members map[int]*models.AOCMember `json:"members"`
+	Event       string                    `json:"event"`
+	Members     map[int]*models.AOCMember `json:"members"`
+	LastUpdated time.Time                 `json:"last_updated"`
 }
 
 type LeaderboardListViews struct {

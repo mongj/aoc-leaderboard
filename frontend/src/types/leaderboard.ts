@@ -32,6 +32,7 @@ export interface Members {
 export interface LeaderboardData {
   members: Members;
   event: string;
+  last_updated: string;
 }
 export interface LeaderboardListView {
   id: number;

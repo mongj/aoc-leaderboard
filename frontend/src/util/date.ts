@@ -7,4 +7,15 @@ function getCurrentAdventDay() {
   return day;
 }
 
-export default getCurrentAdventDay;
+function formatDate(date: string) {
+  return new Date(date).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+    timeZone: 'UTC',
+  });
+}
+
+export { getCurrentAdventDay, formatDate };

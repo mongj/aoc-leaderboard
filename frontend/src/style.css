@@ -591,3 +591,7 @@ form#settings input[type='checkbox'] ~ span {
   max-width: 0;
   transition: max-width 0.2s 1s;
 }
+
+hr {
+  border: 0.5px solid #333340;
+}

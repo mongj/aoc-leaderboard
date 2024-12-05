@@ -43,6 +43,7 @@ func HandleReadMerged(w http.ResponseWriter, r *http.Request) ([]byte, error) {
 		// For now we assume that all leaderboards are for the same event
 		// So we just take the last one
 		mergedLeaderboard.Event = lbData.Event
+		mergedLeaderboard.LastUpdated = lb.UpdatedAt
 
 		// Add members to merged leaderboard
 		for _, member := range lbData.Members {

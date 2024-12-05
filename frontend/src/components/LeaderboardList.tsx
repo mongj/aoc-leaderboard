@@ -1,11 +1,12 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-import { useEffect } from "react";
-import { getLeaderboardList } from "../api/leaderboard";
-import { LeaderboardListView } from "../types/leaderboard";
+import { useEffect } from 'react';
+import { getLeaderboardList } from '../api/leaderboard';
+import { LeaderboardListView } from '../types/leaderboard';
 
 function LeaderboardList() {
-  const [leaderboardList, setLeaderboardList] = useState<LeaderboardListView[]>();
+  const [leaderboardList, setLeaderboardList] =
+    useState<LeaderboardListView[]>();
 
   useEffect(() => {
     getLeaderboardList().then(setLeaderboardList);
@@ -18,9 +19,12 @@ function LeaderboardList() {
   return (
     <div>
       <p>
-        You can join one of our leaderboards by entering the invite code below on
-        the Advent of Code leaderboard page{' '}
-        <a href="https://adventofcode.com/2024/leaderboard/private" target="_blank">
+        You can join one of our leaderboards by entering the invite code below
+        on the Advent of Code leaderboard page{' '}
+        <a
+          href="https://adventofcode.com/2024/leaderboard/private"
+          target="_blank"
+        >
           here
         </a>
         .
