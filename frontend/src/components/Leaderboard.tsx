@@ -7,7 +7,7 @@ import { Nullable } from '../types/utility';
 import { DayStreak, LuckyDrawTicket } from './Badge';
 import { TAB } from '../util/space';
 import { getLeaderboard } from '../api/leaderboard';
-import { sortByLocalScore } from '../util/sorting';
+import { sortByLocalScore, sortByStars } from '../util/sorting';
 
 enum SortOrder {
   Local = 'local_score',
@@ -58,7 +58,10 @@ function Leaderboard() {
         break;
       case SortOrder.Stars:
         setSortedMembers(
-          Object.values(leaderboard.members).sort((a, b) => b.stars - a.stars),
+          sortByStars(
+            Object.values(leaderboard.members),
+            getCurrentAdventDay(),
+          )
         );
         break;
       default:
