@@ -22,12 +22,12 @@ function getClientTimeZone(): string {
 }
 
 function formatDate(date: string) {
-  return new Date(date).toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
+  return new Date(date).toLocaleDateString(navigator.language, {
+    month: 'short',
     day: 'numeric',
-    hour: '2-digit',
+    hour: 'numeric',
     minute: '2-digit',
+    hour12: true,
     timeZone: getClientTimeZone(),
   });
 }

@@ -84,7 +84,9 @@ function Leaderboard() {
 
   return (
     <>
-      <p>Last updated: {formatDate(leaderboard.last_updated)}</p>
+      <p>
+        Last updated: <code>{formatDate(leaderboard.last_updated)}</code>
+      </p>
       <LeaderboardDateHeader
         padLeft={
           sortOrder == SortOrder.Stars
