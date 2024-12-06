@@ -203,8 +203,8 @@ function LeaderboardRowTemplate({
           );
         },
       )}
-      <span className="privboard-name">{getName(member.name)}</span>{' '}
-      {member.stars >= LUCKY_DRAW_STARS ? <LuckyDrawTicket /> : null}{' '}
+      <span className="privboard-name">{getName(member.name)}&nbsp;</span>
+      {member.stars >= LUCKY_DRAW_STARS && <LuckyDrawTicket />}
       <DayStreak
         year={ADVENT_YEAR}
         latestDay={getCurrentAdventDay()}
