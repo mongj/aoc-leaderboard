@@ -82,8 +82,37 @@ function Leaderboard() {
     });
   }
 
+  // Statistics
+  const count50Stars = sortedMembers.filter(
+    (member) => member.stars === 50,
+  ).length;
+  const count20Stars = sortedMembers.filter(
+    (member) => member.stars >= 20,
+  ).length;
+  const count1Star = sortedMembers.filter((member) => member.stars >= 1).length;
+
   return (
     <>
+      <section>
+        <p>Some Statistics</p>
+        <ul>
+          <li>
+            <code>{count50Stars}</code>{' '}
+            {count50Stars > 1 ? 'people have' : 'person has'} obtained {`== `}
+            <span className="star-count">{`50*`}</span>
+          </li>
+          <li>
+            <code>{count20Stars}</code>{' '}
+            {count20Stars > 1 ? 'people have' : 'person has'} obtained {`>= `}
+            <span className="star-count">{`20*`}</span>
+          </li>
+          <li>
+            <code>{count1Star}</code>{' '}
+            {count1Star > 1 ? 'people have' : 'person has'} obtained {`>= `}
+            <span className="star-count">{`1*`}</span>
+          </li>
+        </ul>
+      </section>
       <p>
         Last updated: <code>{formatDate(leaderboard.last_updated)}</code>
       </p>

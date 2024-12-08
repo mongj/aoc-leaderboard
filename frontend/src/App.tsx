@@ -97,7 +97,6 @@ function App() {
             the first star, and{' '}
             <span className="privboard-star-unlocked">gray</span> means none.
           </p>
-
           <Leaderboard />
         </article>
       </main>
