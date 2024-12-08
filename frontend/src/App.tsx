@@ -15,7 +15,7 @@ function App() {
   };
 
   return (
-    <body>
+    <>
       <Header />
       <main>
         <article>
@@ -45,8 +45,8 @@ function App() {
             <a onClick={handleShowBadges}>[Badges]</a> we added!
           </p>
           {showOrdering && (
-            <p>
-              The following ordering methods are available:
+            <section>
+              <p>The following ordering methods are available:</p>
               <ul>
                 <li>
                   <a href="?order=stars">[Stars]</a>, which uses the number of
@@ -70,11 +70,11 @@ function App() {
               local score.
             </li> */}
               </ul>{' '}
-            </p>
+            </section>
           )}
           {showBadges && (
-            <p>
-              We also added the following cool badges!
+            <section>
+              <p>We also added the following cool badges!</p>
               <ul>
                 <li>
                   A <span className="star-count">ticket</span> 🎫 to enter the
@@ -88,7 +88,7 @@ function App() {
                   consecutive days for the streak counter to appear!
                 </li>
               </ul>
-            </p>
+            </section>
           )}
           <p>
             <span className="privboard-star-both">Gold</span> indicates the user
@@ -100,7 +100,7 @@ function App() {
           <Leaderboard />
         </article>
       </main>
-    </body>
+    </>
   );
 }
 
