@@ -222,6 +222,7 @@ function LeaderboardRowTemplate({
           );
         },
       )}
+      {TAB}
       <span className="privboard-name">
         {member.socials_link ? (
           <a href={member.socials_link} target="_blank">
