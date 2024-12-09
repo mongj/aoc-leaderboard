@@ -1,6 +1,7 @@
 package cron
 
 import (
+	"fmt"
 	"log"
 	"os"
 	"os/signal"
@@ -15,11 +16,24 @@ import (
 func Init(db *gorm.DB) {
 	c := cron.New()
 
-	// UpdateLeaderboard every 15 minutes
-	_, err := c.AddFunc("@every 15m", func() { UpdateLeaderboard(db) })
+	// Make a list of jobs
+	jobs := []struct {
+		Interval string
+		Run      func(db *gorm.DB)
+	}{
+		{Interval: "@every 15m", Run: UpdateLeaderboard},
+		{Interval: "@every 15m", Run: UpdateUsers},
+	}
 
-	if err != nil {
-		log.Fatalln(errors.Wrap(err, "error scheduling UpdateLeaderboard"))
+	for _, job := range jobs {
+		// Run the job immediately
+		job.Run(db)
+
+		// Schedule the job to run at the given interval
+		_, err := c.AddFunc(job.Interval, func() { job.Run(db) })
+		if err != nil {
+			log.Fatalln(errors.Wrap(err, fmt.Sprintf("error scheduling %v", job)))
+		}
 	}
 
 	// Start the cron scheduler

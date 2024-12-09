@@ -1,5 +1,7 @@
 package models
 
+// These are the fields from the official AOC leaderboard API
+// This should NOT be touched unless the AOC API changes
 type AOCLeaderboard struct {
 	OwnerID int                `json:"owner_id"`
 	Event   string             `json:"event"`

@@ -20,17 +20,14 @@ export interface Member {
   global_score: number;
   last_star_ts: number;
   name: Nullable<string>;
+  socials_link?: string;
   completion_day_level: CompletionDayLevel;
   id: number;
   stars: number;
 }
 
-export interface Members {
-  [id: string]: Member;
-}
-
 export interface LeaderboardData {
-  members: Members;
+  members: Member[];
   event: string;
   last_updated: string;
 }

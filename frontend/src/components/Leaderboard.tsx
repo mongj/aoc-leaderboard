@@ -44,31 +44,21 @@ function Leaderboard() {
     switch (sortOrder) {
       case SortOrder.Local:
         setSortedMembers(
-          sortByLocalScore(
-            Object.values(leaderboard.members),
-            getCurrentAdventDay(),
-          ),
+          sortByLocalScore(leaderboard.members, getCurrentAdventDay()),
         );
         break;
       case SortOrder.Global:
         setSortedMembers(
-          Object.values(leaderboard.members).sort(
-            (a, b) => b.global_score - a.global_score,
-          ),
+          leaderboard.members.sort((a, b) => b.global_score - a.global_score),
         );
         break;
       case SortOrder.Stars:
         setSortedMembers(
-          sortByStars(
-            Object.values(leaderboard.members),
-            getCurrentAdventDay(),
-          ),
+          sortByStars(leaderboard.members, getCurrentAdventDay()),
         );
         break;
       default:
-        setSortedMembers(
-          Object.values(leaderboard.members).sort((a, b) => b.stars - a.stars),
-        );
+        setSortedMembers(leaderboard.members.sort((a, b) => b.stars - a.stars));
     }
   }, [leaderboard, sortOrder]);
 
@@ -232,7 +222,16 @@ function LeaderboardRowTemplate({
           );
         },
       )}
-      <span className="privboard-name">{getName(member.name)}&nbsp;</span>
+      <span className="privboard-name">
+        {member.socials_link ? (
+          <a href={member.socials_link} target="_blank">
+            {getName(member.name)}
+          </a>
+        ) : (
+          getName(member.name)
+        )}
+        &nbsp;
+      </span>
       {member.stars >= LUCKY_DRAW_STARS && <LuckyDrawTicket />}
       <DayStreak
         year={ADVENT_YEAR}

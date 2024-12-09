@@ -19,11 +19,13 @@ import (
 const READ_HEADER_TIMEOUT_SEC = 3
 
 func main() {
+	// Load config
 	cfg, err := config.LoadEnv()
 	if err != nil {
 		log.Fatalln(errors.Wrap(err, "error loading config"))
 	}
 
+	// Connect to database
 	db, err := database.Connect(cfg)
 	if err != nil {
 		log.Fatalln(errors.Wrap(err, "error connecting to database"))
@@ -33,10 +35,13 @@ func main() {
 	ctx, stop := signal.NotifyContext(context.Background(), syscall.SIGINT, syscall.SIGTERM)
 	defer stop()
 
+	// Initialize cron jobs
 	go cron.Init(db)
 
+	// Initialize router
 	r := router.Setup(db)
 
+	// Server configs
 	log.Printf("Listening on port %v", cfg.ServerPort)
 	port := ":" + strconv.Itoa(cfg.ServerPort)
 	server := &http.Server{

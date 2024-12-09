@@ -27,11 +27,20 @@ func HandleReadMerged(w http.ResponseWriter, r *http.Request) ([]byte, error) {
 		return nil, errors.Wrap(err, "failed to get leaderboards")
 	}
 
-	// Merge leaderboards
-	// All members will be combined (by id)
+	// Get all users
+	users, err := models.ReadAllUsers(db)
+	if err != nil {
+		return nil, errors.Wrap(err, "failed to get users")
+	}
 
-	var mergedLeaderboard views.LeaderboardViews
-	mergedLeaderboard.Members = make(map[int]*models.AOCMember)
+	nameToLink := make(map[string]*string)
+	for _, u := range users {
+		nameToLink[u.Name] = u.SocialsLink
+	}
+
+	// Merge leaderboards, i.e., combine members by id
+	var mergedLb views.LeaderboardViews
+	var mergedMembers = make(map[int]views.MemberView)
 
 	for _, lb := range leaderboards {
 		// Unmarshall json data from leaderboard
@@ -42,16 +51,34 @@ func HandleReadMerged(w http.ResponseWriter, r *http.Request) ([]byte, error) {
 
 		// For now we assume that all leaderboards are for the same event
 		// So we just take the last one
-		mergedLeaderboard.Event = lbData.Event
-		mergedLeaderboard.LastUpdated = lb.UpdatedAt
+		mergedLb.Event = lbData.Event
+		mergedLb.LastUpdated = lb.UpdatedAt
 
 		// Add members to merged leaderboard
 		for _, member := range lbData.Members {
-			mergedLeaderboard.Members[member.ID] = member
+			// Inject social link
+			m := views.MemberView{
+				ID:                member.ID,
+				CompletionDays:    member.CompletionDays,
+				LocalScore:        member.LocalScore,
+				Stars:             member.Stars,
+				GlobalScore:       member.GlobalScore,
+				LastStarTimestamp: member.LastStarTimestamp,
+			}
+			if member.Name != nil {
+				m.Name = member.Name
+				m.SocialsLink = nameToLink[*member.Name]
+			}
+			mergedMembers[member.ID] = m
 		}
 	}
 
-	data, err := views.Encode(mergedLeaderboard)
+	mergedLb.Members = make([]views.MemberView, 0, len(mergedMembers))
+	for _, m := range mergedMembers {
+		mergedLb.Members = append(mergedLb.Members, m)
+	}
+
+	data, err := views.Encode(mergedLb)
 	if err != nil {
 		return nil, errors.Wrap(err, "failed to marshal merged leaderboard")
 	}
