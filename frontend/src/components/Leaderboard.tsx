@@ -5,7 +5,8 @@ import { getCurrentAdventDay, formatDate } from '../util/date';
 import { ADVENT_DAYS, ADVENT_YEAR, LUCKY_DRAW_STARS } from '../util/constants';
 import { Nullable } from '../types/utility';
 import { DayStreak, LuckyDrawTicket } from './Badge';
-import { getLeaderboard } from '../api/leaderboard';
+// import { getLeaderboard } from '../api/leaderboard';
+import { getLocalLeaderboard } from '../api/leaderboard';
 import { sortByLocalScore, sortByStars } from '../util/sorting';
 import { TAB } from '../util/space';
 
@@ -35,7 +36,7 @@ function Leaderboard() {
   }
 
   useEffect(() => {
-    getLeaderboard().then(setLeaderboard);
+    getLocalLeaderboard().then(setLeaderboard);
   }, []);
 
   useEffect(() => {

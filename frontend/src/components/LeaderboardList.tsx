@@ -1,7 +1,8 @@
 import { useState } from 'react';
 
 import { useEffect } from 'react';
-import { getLeaderboardList } from '../api/leaderboard';
+// import { getLeaderboardList } from '../api/leaderboard';
+import { getLocalLeaderboardList } from '../api/leaderboard';
 import { LeaderboardListView } from '../types/leaderboard';
 
 function LeaderboardList() {
@@ -9,7 +10,7 @@ function LeaderboardList() {
     useState<LeaderboardListView[]>();
 
   useEffect(() => {
-    getLeaderboardList().then(setLeaderboardList);
+    getLocalLeaderboardList().then(setLeaderboardList);
   }, []);
 
   if (!leaderboardList) {

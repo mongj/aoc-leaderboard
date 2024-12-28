@@ -8,4 +8,15 @@ const api = axios.create({
   },
 });
 
-export default api;
+// Local API
+// Fetches data from local JSON files in /public
+// Used to keep the leaderboard up after AOC ends,
+const localApi = axios.create({
+  baseURL: '/',
+  timeout: 30000, // 30 seconds
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
+
+export { api, localApi };
